@@ -12,6 +12,7 @@ import {
   RefreshCw,
   BrainCircuit,
 } from "lucide-react"
+import CodeBlock from "@/components/CodeBlock"
 
 export default function Home() {
   return (
@@ -357,19 +358,7 @@ function UsageStep({ title, description, code }) {
       <p className="text-muted-foreground max-w-xl mb-4">{description}</p>
 
       <div className="w-full max-w-xl">
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
-          <div className="relative p-4 bg-black rounded-lg">
-            <div className="absolute top-3 right-3">
-              <button className="text-xs bg-primary/20 hover:bg-primary/30 text-primary px-2 py-1 rounded transition-colors duration-200">
-                Copy
-              </button>
-            </div>
-            <pre className="text-sm text-muted-foreground overflow-x-auto">
-              <code>{code}</code>
-            </pre>
-          </div>
-        </div>
+        <CodeBlock code={code} />
       </div>
     </div>
   )
