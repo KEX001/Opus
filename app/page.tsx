@@ -276,12 +276,12 @@ export default function Home() {
                   <div>
                     <h3 className="text-lg font-semibold mb-2 text-secondary">Open requirements.txt</h3>
                     <p className="text-muted-foreground mb-4">In your bot's root directory, find the requirements.txt file.</p>
-                    <CodeBlock code={"# requirements.txt in your project"} />
+                    <CodeBlock code={"# requirements.txt"} />
                   </div>
                 </div>
               </div>
             </div>
-
+            
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               <div className="relative p-6 bg-card/80 backdrop-blur-sm border border-primary/10 rounded-xl">
@@ -291,10 +291,14 @@ export default function Home() {
                       <span className="font-mono font-bold">2</span>
                     </div>
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <h3 className="text-lg font-semibold mb-2 text-secondary">Replace the contents</h3>
                     <p className="text-muted-foreground mb-4">Add this line to automatically include all Opus Core dependencies:</p>
-                    <CodeBlock code={"-r https://raw.githubusercontent.com/KEX001/Opus/main/core/codex.txt"} />
+                    <div className="overflow-x-auto">
+                      <pre className="whitespace-nowrap bg-muted p-4 text-sm font-mono rounded-md border border-border">
+                        <code>-r https://raw.githubusercontent.com/KEX001/Opus/main/core/codex.txt</code>
+                      </pre>
+                    </div>
                   </div>
                 </div>
               </div>
