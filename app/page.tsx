@@ -226,14 +226,6 @@ export default function Home() {
       {/* Usage Section */}
       <section id="usage" className="py-20 md:py-32 relative bg-gradient-to-b from-background/90 to-background">
         <div className="container relative z-10 px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent inline-block font-display">
-              Get Started
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Use stable modules in your own music bot project
-            </p>
-          </div>
           <div className="mt-12 p-6 rounded-xl bg-secondary/5 border border-secondary/20">
             <h4 className="text-lg font-semibold mb-2 text-secondary">Note:</h4>
             <p className="text-muted-foreground">
@@ -242,6 +234,14 @@ export default function Home() {
                   player experience — which will launch as a separate official repo based on user demand. This future
                   release will include VX AI integration, enhanced playback systems, and Opus V2.0 Prime+ capabilities.
                   Stay tuned for updates — and if you're excited about what's coming, let us know!
+            </p>
+          </div>          
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent inline-block font-display">
+              Get Started
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Use stable modules in your own music bot project
             </p>
           </div>
           <div className="max-w-3xl mx-auto">
