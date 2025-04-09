@@ -14,9 +14,29 @@ export function SiteHeader() {
       setIsScrolled(window.scrollY > 20)
     }
 
+    // Close mobile menu when clicking outside
+    const handleClickOutside = (e) => {
+      if (isMobileMenuOpen && !e.target.closest(".mobile-menu") && !e.target.closest(".menu-button")) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    // Prevent body scroll when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    document.addEventListener("click", handleClickOutside)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      document.removeEventListener("click", handleClickOutside)
+      document.body.style.overflow = ""
+    }
+  }, [isMobileMenuOpen])
 
   return (
     <header
@@ -48,26 +68,32 @@ export function SiteHeader() {
           </Button>
         </nav>
 
-        <button className="md:hidden text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button
+          className="md:hidden text-foreground p-2 menu-button focus:outline-none"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
           {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-md z-40 p-6">
-          <nav className="flex flex-col items-center gap-6 pt-8">
-            <NavLinks mobile setIsMobileMenuOpen={setIsMobileMenuOpen} />
+      <div
+        className={`md:hidden fixed inset-0 top-16 bg-background/95 backdrop-blur-md z-40 mobile-menu transition-transform duration-300 transform ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <nav className="flex flex-col items-center gap-8 pt-12 h-full">
+          <NavLinks mobile setIsMobileMenuOpen={setIsMobileMenuOpen} />
 
-            <Button asChild variant="outline" size="sm" className="mt-4 gap-1 w-full">
-              <Link href="https://github.com/KEX001/Opus" target="_blank" rel="noopener noreferrer">
-                <Github className="h-4 w-4 mr-1" />
-                <span>Star on GitHub</span>
-              </Link>
-            </Button>
-          </nav>
-        </div>
-      )}
+          <Button asChild variant="outline" size="lg" className="mt-4 gap-2 w-4/5 max-w-xs">
+            <Link href="https://github.com/KEX001/Opus" target="_blank" rel="noopener noreferrer">
+              <Github className="h-5 w-5 mr-1" />
+              <span>Star on GitHub</span>
+            </Link>
+          </Button>
+        </nav>
+      </div>
     </header>
   )
 }
@@ -88,7 +114,7 @@ function NavLinks({ mobile = false, setIsMobileMenuOpen = null }) {
       target={link.external ? "_blank" : undefined}
       rel={link.external ? "noopener noreferrer" : undefined}
       className={`relative text-foreground/80 hover:text-primary transition-colors duration-200 ${
-        mobile ? "text-lg py-3" : ""
+        mobile ? "text-xl py-4 font-display" : ""
       }`}
       onClick={() => {
         if (mobile && setIsMobileMenuOpen) {
@@ -97,7 +123,7 @@ function NavLinks({ mobile = false, setIsMobileMenuOpen = null }) {
       }}
     >
       <span>{link.label}</span>
-      <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+      <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-primary to-secondary scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-left" />
     </Link>
   ))
 }
