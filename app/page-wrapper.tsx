@@ -42,6 +42,16 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
             targetElement.scrollIntoView({
               behavior: "smooth",
             })
+
+            // Close mobile menu if open
+            const mobileMenu = document.querySelector(".mobile-menu")
+            if (mobileMenu && mobileMenu.classList.contains("translate-x-0")) {
+              // Find and click the menu button to close it
+              const menuButton = document.querySelector(".menu-button")
+              if (menuButton) {
+                ;(menuButton as HTMLElement).click()
+              }
+            }
           }
         }
       })
