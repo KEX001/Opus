@@ -34,7 +34,7 @@ export default function CodeBlock({ code }: { code: string }) {
 
         {/* Hint text */}
         <div className="absolute top-2 right-3 text-xs text-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          Click to copy
+          .
         </div>
 
         <pre className="text-sm text-muted-foreground overflow-x-auto">
