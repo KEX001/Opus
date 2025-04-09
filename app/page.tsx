@@ -231,10 +231,19 @@ export default function Home() {
               Get Started
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              How to use Opus Core in your own music bot project
+              Use stable modules in your own music bot project
             </p>
           </div>
-
+          <div className="mt-12 p-6 rounded-xl bg-secondary/5 border border-secondary/20">
+            <h4 className="text-lg font-semibold mb-2 text-secondary">Note:</h4>
+            <p className="text-muted-foreground">
+                  The current <code className="text-primary bg-primary/10 px-1 py-0.5 rounded">Opus</code> repository
+                  contains the stable core modules only. We're actively working on Opus V2.0 — the full-featured music
+                  player experience — which will launch as a separate official repo based on user demand. This future
+                  release will include VX AI integration, enhanced playback systems, and Opus V2.0 Prime+ capabilities.
+                  Stay tuned for updates — and if you're excited about what's coming, let us know!
+            </p>
+          </div>
           <div className="max-w-3xl mx-auto">
             <div className="space-y-12">
               <UsageStep
@@ -252,17 +261,6 @@ export default function Home() {
                 description="Run this command in your terminal to install all required modules:"
                 code="pip3 install -U -r requirements.txt"
               />
-
-              <div className="mt-12 p-6 rounded-xl bg-secondary/5 border border-secondary/20">
-                <h4 className="text-lg font-semibold mb-2 text-secondary">Note:</h4>
-                <p className="text-muted-foreground">
-                  The current <code className="text-primary bg-primary/10 px-1 py-0.5 rounded">Opus</code> repository
-                  contains the stable core modules only. We're actively working on Opus V2.0 — the full-featured music
-                  player experience — which will launch as a separate official repo based on user demand. This future
-                  release will include VX AI integration, enhanced playback systems, and Opus V2.0 Prime+ capabilities.
-                  Stay tuned for updates — and if you're excited about what's coming, let us know!
-                </p>
-              </div>
             </div>
           </div>
         </div>
