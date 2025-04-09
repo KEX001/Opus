@@ -5,12 +5,13 @@ import {
   Search,
   Music,
   Zap,
-  BotIcon as Robot,
+  Bot as Robot,
   Globe,
-  PenToolIcon as Tools,
+  PenTool as Tools,
   Server,
   RefreshCw,
   BrainCircuit,
+  PenTool,
 } from "lucide-react"
 import CodeBlock from "@/components/CodeBlock"
 
@@ -74,9 +75,10 @@ export default function Home() {
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-70 animate-pulse" />
                 <Image
                   src="/images/audio-visual.jpg"
-                  alt="Opus V2.0 Core"
+                  alt="Opus V2.0 Core audio visualization"
                   width={600}
                   height={600}
+                  priority
                   className="relative rounded-2xl border border-primary/20 shadow-2xl shadow-primary/20 w-full h-auto object-cover aspect-square"
                 />
               </div>
@@ -226,16 +228,31 @@ export default function Home() {
       {/* Usage Section */}
       <section id="usage" className="py-20 md:py-32 relative bg-gradient-to-b from-background/90 to-background">
         <div className="container relative z-10 px-4 md:px-6">
-          <div className="mt-12 p-6 rounded-xl bg-secondary/5 border border-secondary/20">
-            <h4 className="text-lg font-semibold mb-2 text-secondary">Note:</h4>
-            <p className="text-muted-foreground">
-                  The current <code className="text-primary bg-primary/10 px-1 py-0.5 rounded">Opus</code> repository
-                  contains the stable core modules only. We're actively working on Opus V2.0 — the full-featured music
-                  player experience — which will launch as a separate official repo based on user demand. This future
-                  release will include VX AI integration, enhanced playback systems, and Opus V2.0 Prime+ capabilities.
-                  Stay tuned for updates — and if you're excited about what's coming, let us know!
-            </p>
-          </div>          
+          {/* Enhanced Note Box */}
+          <div className="relative mb-16 group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-xl blur opacity-75 group-hover:opacity-100 transition-all duration-300"></div>
+            <div className="relative p-6 md:p-8 bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                    <PenTool className="w-4 h-4" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-primary">Note</h3>
+                  <p className="text-muted-foreground">
+                    The current <code className="text-primary bg-primary/10 px-1.5 py-0.5 rounded-md">Opus</code> repository
+                    contains the stable core modules only. We're actively working on Opus V2.0 — the full-featured music
+                    player experience — which will launch as a separate official repo based on user demand. This future
+                    release will include VX AI integration, enhanced playback systems, and Opus V2.0 Prime+ capabilities.
+                    Stay tuned for updates — and if you're excited about what's coming, let us know!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Usage Section */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent inline-block font-display">
               Get Started
@@ -244,23 +261,61 @@ export default function Home() {
               Use stable modules in your own music bot project
             </p>
           </div>
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-12">
-              <UsageStep
-                title="Open requirements.txt"
-                description="In your bot's root directory, find the requirements.txt file."
-                code="# requirements.txt in your project"
-              />
-              <UsageStep
-                title="Replace the contents"
-                description="Add this line to automatically include all Opus Core dependencies:"
-                code="-r https://raw.githubusercontent.com/KEX001/Opus/main/core/codex.txt"
-              />
-              <UsageStep
-                title="Install dependencies"
-                description="Run this command in your terminal to install all required modules:"
-                code="pip3 install -U -r requirements.txt"
-              />
+
+          {/* Improved Steps */}
+          <div className="max-w-3xl mx-auto space-y-6">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="relative p-6 bg-card/80 backdrop-blur-sm border border-primary/10 rounded-xl">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <span className="font-mono font-bold">1</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 text-secondary">Open requirements.txt</h3>
+                    <p className="text-muted-foreground mb-4">In your bot's root directory, find the requirements.txt file.</p>
+                    <CodeBlock code={"# requirements.txt in your project"} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="relative p-6 bg-card/80 backdrop-blur-sm border border-primary/10 rounded-xl">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <span className="font-mono font-bold">2</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 text-secondary">Replace the contents</h3>
+                    <p className="text-muted-foreground mb-4">Add this line to automatically include all Opus Core dependencies:</p>
+                    <CodeBlock code={"-r https://raw.githubusercontent.com/KEX001/Opus/main/core/codex.txt"} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="relative p-6 bg-card/80 backdrop-blur-sm border border-primary/10 rounded-xl">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <span className="font-mono font-bold">3</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 text-secondary">Install dependencies</h3>
+                    <p className="text-muted-foreground mb-4">Run this command in your terminal to install all required modules:</p>
+                    <CodeBlock code={"pip3 install -U -r requirements.txt"} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -298,14 +353,16 @@ export default function Home() {
 
 function FeatureCard({ icon, title, description }) {
   return (
-    <div className="group relative p-6 md:p-8 rounded-xl bg-card/40 backdrop-blur-sm border border-primary/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/5 overflow-hidden">
+    <article className="group relative p-6 md:p-8 rounded-xl bg-card/40 backdrop-blur-sm border border-primary/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/5 overflow-hidden">
       <div className="absolute h-1 top-0 left-0 right-0 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-      <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300">{icon}</div>
+      <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
+        {icon}
+      </div>
 
       <h3 className="text-xl font-semibold mb-3 text-secondary font-display">{title}</h3>
       <p className="text-muted-foreground">{description}</p>
-    </div>
+    </article>
   )
 }
 
