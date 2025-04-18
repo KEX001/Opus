@@ -27,8 +27,6 @@ qrcode
 pytz
 future==0.18.3
 search_engine_parser
-py-tgcalls==1.2.9
-ntgcalls==1.1.2
 pykeyboard
 pyshorteners
 git+https://github.com/KurimuzonAkuma/pyrogram@dev
@@ -47,7 +45,10 @@ youtube-search-python
 gtts
 git+https://github.com/AsmSafone/SafoneAPI
 lexica-api==1.5.1
-httpx==0.25.2
+httpx[http2]
+py-tgcalls==2.0.6
+ntgcalls==1.2.3
+py-yt-search>=0.2
 gpytranslate
 openai==0.28.0
 pickledb
