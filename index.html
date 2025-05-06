@@ -53,10 +53,13 @@
       .logo {
         font-size: 1.5rem;
         color: var(--primary);
-        margin-bottom: 2rem;
+        margin: 1rem 0 2rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        padding: 0.5rem;
+        background: rgba(0, 255, 204, 0.1);
+        border-radius: 8px;
       }
       
       .logo-icon {
@@ -210,6 +213,13 @@
         z-index: 101;
         cursor: pointer;
         padding: 0.5rem;
+        transition: opacity 0.3s ease;
+      }
+      
+      /* Hide menu toggle when sidebar is active */
+      .sidebar.active ~ .menu-toggle {
+        opacity: 0;
+        pointer-events: none;
       }
       
       .overlay {
