@@ -1,25 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Opus V2.0</title>
-    <meta name="description" content="Opus Core" />
-    <meta name="author" content="K E X" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opus v2.0 Core Documentation</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+      
+      :root {
+        --primary: #00ffcc;
+        --secondary: #0099ff;
+        --dark-bg: #0f0f0f;
+        --card-bg: #1a1a1a;
+        --text-light: #dddddd;
+        --text-muted: #888888;
+      }
+      
+      body {
+        font-family: 'Orbitron', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+      
+      .container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        min-height: 100vh;
+      }
+      
+      /* Sidebar */
+      .sidebar {
+        background-color: #111111;
+        padding: 2rem 1rem;
+        border-right: 1px solid #00ffcc33;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .logo-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      
+      .nav-section {
+        margin-bottom: 2rem;
+      }
+      
+      .nav-title {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+      
+      .nav-link {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-link:hover, .nav-link.active {
+        background-color: #00ffcc22;
+        color: var(--primary);
+      }
+      
+      /* Main Content */
+      .main-content {
+        padding: 2rem 3rem;
+        max-width: 900px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #00ffcc55;
+        padding-bottom: 0.5rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin: 3rem 0 1.5rem;
+      }
+      
+      h3 {
+        font-size: 1.4rem;
+        color: var(--secondary);
+        margin: 2rem 0 1rem;
+      }
+      
+      p {
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Cards */
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid #00ffcc33;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .card-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+      
+      .card-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      
+      /* Code Blocks */
+      pre {
+        background-color: #000000;
+        border: 1px solid #00ffcc33;
+        border-radius: 6px;
+        padding: 1rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+      
+      code {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 0.9rem;
+      }
+      
+      .inline-code {
+        background-color: #00ffcc11;
+        color: var(--primary);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+      
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+      
+      th, td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #00ffcc22;
+      }
+      
+      th {
+        background-color: #00ffcc11;
+        color: var(--primary);
+      }
+      
+      tr:hover {
+        background-color: #00ffcc0a;
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+        
+        .sidebar {
+          display: none;
+        }
+        
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+                OPUS v2.0
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Getting Started</div>
+                <a href="#overview" class="nav-link active">Overview</a>
+                <a href="#installation" class="nav-link">Installation</a>
+                <a href="#configuration" class="nav-link">Configuration</a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Core Modules</div>
+                <a href="#audio-module" class="nav-link">Audio System</a>
+                <a href="#bot-module" class="nav-link">Bot Framework</a>
+                <a href="#ai-module" class="nav-link">AI Integration</a>
+                <a href="#api-module" class="nav-link">API Services</a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Advanced</div>
+                <a href="#deployment" class="nav-link">Deployment</a>
+                <a href="#extending" class="nav-link">Extending Opus</a>
+                <a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <section id="overview">
+                <h1>Opus v2.0 Core Documentation</h1>
+                
+                <p>Opus is a high-performance Python framework designed for building modern audio applications, chatbots, and AI services with a modular architecture.</p>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        Key Features
+                    </div>
+                    <ul>
+                        <li>Real-time audio streaming and processing</li>
+                        <li>Multi-platform bot support (Telegram, Discord)</li>
+                        <li>Seamless AI service integration</li>
+                        <li>REST API endpoints with Flask</li>
+                        <li>Cloud-ready deployment</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="installation">
+                <h2>Installation</h2>
+                
+                <h3>Requirements</h3>
+                <ul>
+                    <li>Python 3.8+</li>
+                    <li>FFmpeg (for audio processing)</li>
+                    <li>Redis (optional, for caching)</li>
+                </ul>
+                
+                <h3>Quick Install</h3>
+                <pre><code># Install from GitHub
+pip install git+https://github.com/VARC9210/Opus.git
 
-    <meta property="og:title" content="opus-core-forge" />
-    <meta property="og:description" content="Opus Core" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+# Or install requirements directly
+pip install -r https://raw.githubusercontent.com/VARC9210/Opus/main/requirements.txt</code></pre>
+                
+                <div class="card">
+                    <div class="card-title">
+                        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        Note
+                    </div>
+                    <p>For audio processing, ensure FFmpeg is installed on your system and available in your PATH.</p>
+                </div>
+            </section>
+            
+            <section id="audio-module">
+                <h2>Audio System</h2>
+                
+                <p>The audio module provides comprehensive tools for streaming, processing, and playing audio content.</p>
+                
+                <h3>Supported Formats</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MP3</td>
+                            <td>Streaming, metadata, quality adjustment</td>
+                        </tr>
+                        <tr>
+                            <td>FLAC</td>
+                            <td>Lossless playback</td>
+                        </tr>
+                        <tr>
+                            <td>OGG</td>
+                            <td>Streaming, low-latency</td>
+                        </tr>
+                        <tr>
+                            <td>AAC</td>
+                            <td>High-efficiency streaming</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="bot-module">
+                <h2>Bot Framework</h2>
+                
+                <p>Opus provides a unified interface for building musicbots across platforms.</p>
+                
+                <h3>Supported Platforms</h3>
+                <ul>
+                    <li><strong>Telegram:</strong> Full support via Pyrogram</li>
+                </ul>
+            </section>
+            
+            <section id="deployment">
+                <h2>Deployment</h2>
+                
+                <p>Opus is designed for cloud deployment with minimal configuration.</p>
+                
+                <h3>Docker Example</h3>
+                <pre><code>FROM python:3.9-slim
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+# Install dependencies
+RUN apt-get update && apt-get install -y ffmpeg
 
-  <body>
-    <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+# Copy application
+COPY . /app
+WORKDIR /app
+
+# Install Python requirements
+RUN pip install -r requirements.txt
+
+# Start application
+CMD ["bash", "start"]</code></pre>
+                
+                <h3>Supported Platforms</h3>
+                <ul>
+                    <li>Docker (recommended)</li>
+                    <li>Heroku</li>
+                    <li>Railway</li>
+                    <li>Render</li>
+                    <li>Traditional Linux servers</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
 </html>
