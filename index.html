@@ -213,12 +213,13 @@
         z-index: 101;
         cursor: pointer;
         padding: 0.5rem;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
       }
       
       /* Hide menu toggle when sidebar is active */
       .sidebar.active ~ .menu-toggle {
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
       }
       
@@ -478,6 +479,15 @@ CMD ["bash", "start"]</code></pre>
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
             document.body.classList.toggle('no-scroll', sidebar.classList.contains('active'));
+            
+            // Update menu toggle visibility
+            if (sidebar.classList.contains('active')) {
+                menuToggle.style.opacity = '0';
+                menuToggle.style.visibility = 'hidden';
+            } else {
+                menuToggle.style.opacity = '1';
+                menuToggle.style.visibility = 'visible';
+            }
         }
         
         // Event listeners
@@ -528,10 +538,18 @@ CMD ["bash", "start"]</code></pre>
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 document.body.classList.remove('no-scroll');
+                menuToggle.style.opacity = '0';
+                menuToggle.style.visibility = 'hidden';
+            } else {
+                menuToggle.style.opacity = '1';
+                menuToggle.style.visibility = 'visible';
             }
         }
         
         window.addEventListener('resize', handleResize);
+        
+        // Initialize menu toggle state
+        handleResize();
     </script>
 </body>
 </html>
