@@ -63,3 +63,4 @@ gpytranslate==1.5.1
 PyYAML
 GitPython
 cryptography
+cachetools
